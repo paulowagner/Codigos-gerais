@@ -1,0 +1,6 @@
+format ELF
+section '.text' executable
+public letraj
+letraj: 	push 	0xffffccee
+			fst dword [ebp+8]
+			fst qword [ebp+9]

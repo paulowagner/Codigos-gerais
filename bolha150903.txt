@@ -1,0 +1,39 @@
+	push endereço 
+	push tamanho
+	call bolha
+	sub esp,2
+
+
+void bolha(int vet[],int tam)
+	push ebp
+	mov ebp,esp
+
+	push ecx
+	push eax
+	push ebx
+	push esi
+	push edx
+	mov ecx,[ebp+8]
+	mov ebx,[ebp+12]
+	mov edx,ecx
+volta1: mov ecx,edx
+	cmp ecx,1
+	jbe fim
+	xor esi,esi
+volta:	mov eax,[ebx+esi]
+	cmp eax,[ebx+esi+1]
+	jbe ntroca
+	xchg [ebx+esi+1],eax
+	xchg [ebx+esi],eax
+ntroca:	inc esi
+	loop volta
+	dec edx
+	jnz volta1
+fim: 	pop edx
+	pop esi
+	pop ebx
+	pop eax
+	pop ecx
+	mov esp,ebp
+	pop ebp
+	ret
